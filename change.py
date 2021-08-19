@@ -48,6 +48,7 @@ def TKFILEPATH(name):
         #pdf用のlist作成
         SKUlist = list()
         ASINlist = list()
+        TITLElist = list()
         NUMBERlist = list()
         PRICElist = list()
         CONDITIONlist = list()
@@ -69,6 +70,7 @@ def TKFILEPATH(name):
             for cell in row:
                 sku = cell.value
                 asin = cell.offset (0,1)
+                title = cell.offset(0,2)
                 number = cell.offset (0,3)
                 price = cell.offset (0,4)
                 cost = cell.offset (0,5)
@@ -79,6 +81,7 @@ def TKFILEPATH(name):
 
                 SKUlist.append(sku)
                 ASINlist.append(asin.value)
+                TITLElist.append(title.value)
                 NUMBERlist.append(number.value)
                 PRICElist.append(price.value)
                 COSTlist.append(cost.value)
@@ -89,7 +92,7 @@ def TKFILEPATH(name):
 
         maxcount += 5000
         rowcount += 5000 
-        info = {'SKU':SKUlist,'ASIN':ASINlist,'number':NUMBERlist,'price':PRICElist,'cost':COSTlist,'akaji':AKAJIlist,'condition':CONDITIONlist,'priceTrace':PRICETRACElist,'leadtime':LEADTIMElist}
+        info = {'SKU':SKUlist,'ASIN':ASINlist,'Title':TITLElist,'number':NUMBERlist,'price':PRICElist,'cost':COSTlist,'akaji':AKAJIlist,'condition':CONDITIONlist,'priceTrace':PRICETRACElist,'leadtime':LEADTIMElist}
         df = pd.DataFrame(info)
         df.to_csv( sheetname + str(sheetcount) + '.csv',index=False,encoding='utf-8')
         print("listの要素",len(SKUlist))
